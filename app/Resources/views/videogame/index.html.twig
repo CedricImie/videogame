@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Videogame list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Platform</th>
+                <th>Type</th>
+                <th>Stock</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for videogame in videogames %}
+            <tr>
+                <td><a href="{{ path('videogame_show', { 'id': videogame.id }) }}">{{ videogame.id }}</a></td>
+                <td>{{ videogame.title }}</td>
+                <td>{{ videogame.price }}</td>
+                <td>{{ videogame.platform }}</td>
+                <td>{{ videogame.type }}</td>
+                <td>{{ videogame.stock }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('videogame_show', { 'id': videogame.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('videogame_edit', { 'id': videogame.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('videogame_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

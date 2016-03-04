@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Trader list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Job</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for trader in traders %}
+            <tr>
+                <td><a href="{{ path('trader_show', { 'id': trader.id }) }}">{{ trader.id }}</a></td>
+                <td>{{ trader.job }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('trader_show', { 'id': trader.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('trader_edit', { 'id': trader.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('trader_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
