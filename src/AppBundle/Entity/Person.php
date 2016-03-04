@@ -7,8 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Person
  *
- * @ORM\Table(name="person")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PersonRepository")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ORM\DiscriminatorMap({"person" = "Person", "trader" = "Trader", "customer" = "Customer"})
  */
 class Person
 {
@@ -35,6 +37,19 @@ class Person
      */
     private $lastname;
 
+    /**
+     * @var string
+     *
+     * @ORM\OneToMany(targetEntity="Videogame", mappedBy="buyer")
+     */
+    private $boughtVideogames;
+
+    /**
+     * @var string
+     *
+     * @ORM\OneToMany(targetEntity="Videogame", mappedBy="seller")
+     */
+    private $selledVideogames;
 
     /**
      * Get id
@@ -93,5 +108,8 @@ class Person
     {
         return $this->lastname;
     }
+
+
+
 }
 

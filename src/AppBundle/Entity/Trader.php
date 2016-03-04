@@ -7,10 +7,12 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Trader
  *
- * @ORM\Table(name="trader")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TraderRepository")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ORM\DiscriminatorMap({"person" = "Person", "trader" = "Trader", "customer" = "Customer"})
  */
-class Trader
+class Trader extends Person
 {
     /**
      * @var int
@@ -21,19 +23,6 @@ class Trader
      */
     private $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255)
-     */
-    private $firstname;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="lastname", type="string", length=255)
-     */
-    private $lastname;
 
     /**
      * @var string
@@ -53,53 +42,6 @@ class Trader
         return $this->id;
     }
 
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return Trader
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set lastname
-     *
-     * @param string $lastname
-     *
-     * @return Trader
-     */
-    public function setLastname($lastname)
-    {
-        $this->lastname = $lastname;
-
-        return $this;
-    }
-
-    /**
-     * Get lastname
-     *
-     * @return string
-     */
-    public function getLastname()
-    {
-        return $this->lastname;
-    }
 
     /**
      * Set job

@@ -59,14 +59,14 @@ class Videogame
     /**
      * @var string
      *
-     * @ORM\Column(name="buyer", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Person", inversedBy="boughtVideogames")
      */
     private $buyer;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="seller", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Person", inversedBy="selledVideogames")
      */
     private $seller;
 
