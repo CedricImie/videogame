@@ -20,15 +20,18 @@ class Type
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      *
-     * @ORM\ManyToOne(targetEntity="Videogame", inversedBy="type")
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
-    private $type;
-
-
+    private $name;
+    /**
+     * @var string
+     *
+     * @ORM\OneToMany(targetEntity="Videogame", mappedBy="type")
+     */
+    private $videogames;
     /**
      * Get id
      *
@@ -62,5 +65,74 @@ class Type
     {
         return $this->type;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->videogames = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Type
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Add videogame
+     *
+     * @param \AppBundle\Entity\Videogame $videogame
+     *
+     * @return Type
+     */
+    public function addVideogame(\AppBundle\Entity\Videogame $videogame)
+    {
+        $this->videogames[] = $videogame;
+
+        return $this;
+    }
+
+    /**
+     * Remove videogame
+     *
+     * @param \AppBundle\Entity\Videogame $videogame
+     */
+    public function removeVideogame(\AppBundle\Entity\Videogame $videogame)
+    {
+        $this->videogames->removeElement($videogame);
+    }
+
+    /**
+     * Get videogames
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVideogames()
+    {
+        return $this->videogames;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+}

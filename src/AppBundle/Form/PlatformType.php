@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class VideogameType extends AbstractType
+class PlatformType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,13 +15,7 @@ class VideogameType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('price')
-            ->add('stock')
-            ->add('platform')
-            ->add('type')
-            ->add('buyer')
-            ->add('seller')
+            ->add('name')
         ;
     }
     
@@ -31,7 +25,7 @@ class VideogameType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Videogame'
+            'data_class' => 'AppBundle\Entity\Platform'
         ));
     }
 }

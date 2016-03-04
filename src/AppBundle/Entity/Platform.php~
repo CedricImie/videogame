@@ -90,40 +90,4 @@ class Platform
     {
         return $this->videogames;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->videogames = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add videogame
-     *
-     * @param \AppBundle\Entity\Videogame $videogame
-     *
-     * @return Platform
-     */
-    public function addVideogame(\AppBundle\Entity\Videogame $videogame)
-    {
-        $this->videogames[] = $videogame;
-
-        return $this;
-    }
-
-    /**
-     * Remove videogame
-     *
-     * @param \AppBundle\Entity\Videogame $videogame
-     */
-    public function removeVideogame(\AppBundle\Entity\Videogame $videogame)
-    {
-        $this->videogames->removeElement($videogame);
-    }
-
-    public function __toString()
-    {
-        return $this->name;
-    }
 }

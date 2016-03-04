@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Platform list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for platform in platforms %}
+            <tr>
+                <td><a href="{{ path('platform_show', { 'id': platform.id }) }}">{{ platform.id }}</a></td>
+                <td>{{ platform.name }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('platform_show', { 'id': platform.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('platform_edit', { 'id': platform.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('platform_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
