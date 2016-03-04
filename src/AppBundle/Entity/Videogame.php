@@ -38,14 +38,14 @@ class Videogame
     /**
      * @var string
      *
-     * @ORM\Column(name="platform", type="string", length=255)
+     * @ORM\OneToMany(targetEntity="Platform", mappedBy="name")
      */
     private $platform;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255, nullable=true)
+     * @ORM\OneToMany(targetEntity="Type", mappedBy="type")
      */
     private $type;
 
@@ -127,54 +127,6 @@ class Videogame
     public function getPrice()
     {
         return $this->price;
-    }
-
-    /**
-     * Set platform
-     *
-     * @param string $platform
-     *
-     * @return Videogame
-     */
-    public function setPlatform($platform)
-    {
-        $this->platform = $platform;
-
-        return $this;
-    }
-
-    /**
-     * Get platform
-     *
-     * @return string
-     */
-    public function getPlatform()
-    {
-        return $this->platform;
-    }
-
-    /**
-     * Set type
-     *
-     * @param string $type
-     *
-     * @return Videogame
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
     }
 
     /**
